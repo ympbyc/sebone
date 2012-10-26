@@ -12,11 +12,11 @@ UI           := Ti at:#UI.
 +SbModel subclass:#StarGazerModel variables:#().
 
 
-+SbCollection subclass:#StartGazerCollection variables:#().
-!StartGazerCollection init
++SbCollection subclass:#StarGazerCollection variables:#().
+!StarGazerCollection init
   self setModelConstructor: StarGazerModel
 !.
-!StartGazerCollection fetch | http url |
+!StatGazerCollection fetch | http url |
   url := 'https://api.github.com/repos/ympbyc/LittleSmallscript/stargazers'.
   http := (Ti at:#Network) createHTTPClient.
   http setOnload: [| gazers |
@@ -26,7 +26,7 @@ UI           := Ti at:#UI.
   (http at:#open) value:#GET value:url.
   http send
 !.
-!StartGazerCollection addGazers: gazers | starGazer |
+!StarGazerCollection addGazers: gazers | starGazer |
   gazers forEach:[:g|
     starGazer := self create 
     ; set:#name   to:(g at:#login) 
@@ -54,7 +54,7 @@ UI           := Ti at:#UI.
 !AppView init
   self _constructDOM.
 
-  sgColl := StartGazerCollection new.
+  sgColl := StarGazerCollection new.
   sgColl addDependent: self.
   searchBtn addEvent:#click Listener:[self search. searchBtn hide]
 !.
