@@ -30,7 +30,7 @@
 
 !SbView addTo: ui
   "Add the view's el to other UI"
-  ui el add: self el
+  ui add: self el
 !.
 
 !SbView show
@@ -45,9 +45,9 @@
   _model
 !.
 
-!SbView on: ev at: ui invoke: blk
+!SbView on:ev invoke: blk
   "Listen for UI events like 'click' and 'keydown'"
-  ui addEvent: ev Listener: blk
+  self el addEvent: ev Listener: blk
 !.
 
 !SbView update: prop to: val

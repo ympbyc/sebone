@@ -45,6 +45,10 @@
   attributes := hash
 !.
 
+!SbModel _attributes
+  attributes
+!.
+
 !SbModel clone
   (self at:#constructor) new ; _setAttributes: attributes
 !.

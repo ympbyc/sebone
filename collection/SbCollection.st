@@ -1,4 +1,4 @@
-"Collections are object that wraps an array of models of a type"
+"A Collections is an object that wraps an array of models of a type"
 
 +Object subclass:#SbCollection variables:#(#models #dependents #modelConst).
 
@@ -79,7 +79,7 @@
   models at:#length
 !.
 
-!SbCollection pushDependent: view
+!SbCollection addDependent: view
   "Add views that listen for events on this collection"
   dependents push: view
 !.
