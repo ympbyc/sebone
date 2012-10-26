@@ -16,7 +16,7 @@ UI           := Ti at:#UI.
 !StarGazerCollection init
   self setModelConstructor: StarGazerModel
 !.
-!StatGazerCollection fetch | http url |
+!StarGazerCollection fetch | http url |
   url := 'https://api.github.com/repos/ympbyc/LittleSmallscript/stargazers'.
   http := (Ti at:#Network) createHTTPClient.
   http setOnload: [| gazers |
