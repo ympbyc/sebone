@@ -1,7 +1,8 @@
 "
  Example usecase of Sebone.st.
  This example runs in titanium mobile environment.
- Compile this file and structure the project so the 'require' path is correct.
+ Compile this file with littlesmallscript@1.0.2 and 
+ structure the project so the require path is correct.
 "
 | SbModel SbCollection SbView UI |
 SbModel      := require value: 'model/SbModel'.
@@ -50,7 +51,6 @@ UI           := Ti at:#UI.
 !.
 
 +SbView subclass:#AppView variables:#(#win #searchBtn #sgColl #sgContainer).
-"AppView is a button"
 !AppView init
   self _constructDOM.
 
@@ -69,7 +69,7 @@ UI           := Ti at:#UI.
 !.
 !AppView onEvent:ev with:obj
   ev === #add ifTrue:[
-    [StarGazerView new ;setModel: obj ;render ;addTo:sgContainer] tryCatch:[:err|alert value:err]
+    StarGazerView new ;setModel: obj ;render ;addTo:sgContainer
   ].
 !.
 !AppView search
