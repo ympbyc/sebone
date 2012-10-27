@@ -6,12 +6,6 @@
  Views are also responsible for receiving UI events like clicks and call suitable methods of the model.
  Sebone is intended to be used in non-browser environment so there is no dependency on DOM."
 
-!SbView init: param
-  "#{#model:modelInstance #ui:UIConstructor}"
-  _model := (param at:#model) || null.
-  uiConstructor := (param at:#ui) || null
-!.
-
 !SbView setModel: m
   "Each view has a reference to a model. To listen for updates"
   _model := m.

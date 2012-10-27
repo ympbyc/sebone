@@ -5,7 +5,7 @@
 "You fetch a set of data(e.g. /users), create a model for each item in the set, 
  add them to the collection one by one."
 
-!SbCollection init: param
+!SbCollection init
   models := #().
   dependents := #()
 !.

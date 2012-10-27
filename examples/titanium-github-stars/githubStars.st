@@ -69,7 +69,7 @@ UI           := Ti at:#UI.
 !.
 !AppView onEvent:ev with:obj
   ev === #add ifTrue:[
-    StarGazerView new: #{#model:obj} ;render ;addTo:sgContainer
+    StarGazerView new ;setModel:obj ;render ;addTo:sgContainer
   ].
 !.
 !AppView search
