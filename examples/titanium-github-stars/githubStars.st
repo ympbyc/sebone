@@ -41,12 +41,12 @@ UI           := Ti at:#UI.
 
 +SbView subclass:#StarGazerView variables:#(#link).
 !StarGazerView init
-  self setUIConstructor: [UI createView ;setLayout:#vertical ;setTop:5 ;setHeight:(UI at:#SIZE) ;setBackgroundColor:'#8fbc8f']
+  self setUIConstructor: [UI createView: #{#layout:#vertical #top:5 #height:(UI at:#SIZE) #backgroundColor:'#8fbc8f'}]
 !.
 !StarGazerView render
-  self el add: (UI createLabel ;setText:(self model get:#name) ;setTop:0).
-  self el add: (UI createImageView ;setImage:(self model get:#avatar) ;setTop:5 ;setHeight:80 ;setWidth:80).
-  link := (UI createLabel ;setText:(self model get:#url) ;setTop:5 ;setColor:'#06f').
+  self el add: (UI createLabel: #{#text:(self model get:#name) #top:0}).
+  self el add: (UI createImageView: #{#image:(self model get:#avatar) #top:5 #height:80 #width:80}).
+  link := (UI createLabel: #{#text:(self model get:#url) #top:5 #color:'#06f'}).
   self el add: link.
 !.
 
@@ -61,15 +61,15 @@ UI           := Ti at:#UI.
 !AppView _constructDOM
   "If we were in browser these UI parts are already in the DOM.
    We call it DOM but it actually is not"
-  win := UI createWindow ;setBackgroundColor:'#fff' ;open. "main window"
-  searchBtn := UI createButton ; setHeight:50 ; setWidth:'90%' ; setTitle:'Who Stargazed LittleSmallscript?'.
-  sgContainer := UI createScrollView ;setLayout:#vertical ;setHeight:'100%' ;setWidth:'100%' ;setContentHeight:#auto.
+  win := UI createWindow: #{#backgroundColor:'#fff'} ; open. "main window"
+  searchBtn := UI createButton: #{#height:50 #width:'90%' #title:'Who Stargazed LittleSmallscript?'}.
+  sgContainer := UI createScrollView: #{#layout:#vertical #height:'100%' #width:'100%' #contentHeight:#auto}.
   win add: sgContainer.
   win add: searchBtn.
 !.
 !AppView onEvent:ev with:obj
   ev === #add ifTrue:[
-    StarGazerView new ;setModel: obj ;render ;addTo:sgContainer
+    StarGazerView new: #{#model:obj} ;render ;addTo:sgContainer
   ].
 !.
 !AppView search
