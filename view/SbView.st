@@ -1,5 +1,8 @@
-"A view is an UI wrapper"
+"SbView.st
+ 2012 Minori Yamashita <ympbyc@gmail.com>
+"
 
+"A view is an UI wrapper"
 +Object subclass:#SbView variables:#(#_model #uiConstructor #elem).
 
 "Views receive events from collections and models and update the UI with current state of the model.

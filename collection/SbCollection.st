@@ -1,5 +1,8 @@
-"A Collections is an object that wraps an array of models of a type"
+"SbCollection
+ 2012 Minori Yamashita <ympbyc@gmail.com>
+"
 
+"A Collections is an object that wraps an array of models of a type"
 +Object subclass:#SbCollection variables:#(#models #_dependents #modelConst).
 
 "You fetch a set of data(e.g. /users), create a model for each item in the set, 

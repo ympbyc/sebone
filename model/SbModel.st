@@ -1,5 +1,8 @@
-"A model is a hash"
+"SbModel.st
+ 2012 Minori Yamashita <ympbyc@gmail.com>
+"
 
+"A model is a hash"
 +Object subclass:#SbModel variables: #(#attributes #changedProp #_dependents #_cid).
 
 "A model is an wrapped hash. It has data storage capability. It has methods to manipulate these data.
