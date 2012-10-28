@@ -26,6 +26,7 @@
 
 !SbView render
   "Override this method to render the view from model data"
+  self
 !.
 
 !SbView addTo: ui

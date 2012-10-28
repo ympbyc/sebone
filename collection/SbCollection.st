@@ -1,13 +1,13 @@
 "A Collections is an object that wraps an array of models of a type"
 
-+Object subclass:#SbCollection variables:#(#models #dependents #modelConst).
++Object subclass:#SbCollection variables:#(#models #_dependents #modelConst).
 
 "You fetch a set of data(e.g. /users), create a model for each item in the set, 
  add them to the collection one by one."
 
 !SbCollection init
   models     :=  #().
-  dependents :=  #().
+  _dependents :=  #().
   modelConst :=  [].
 !.
 
@@ -82,21 +82,25 @@
 
 !SbCollection addDependent: view
   "Add views that listen for events on this collection"
-  dependents push: view
+  _dependents push: view
 !.
 
 !SbCollection added: obj
   "Call onAdd: with obj"
-  dependents forEach: [:view|
+  _dependents forEach: [:view|
     view onAdd:obj
   ]
 !.
 
 !SbCollection removed:obj
   "Call onRemove: with obj"
-  dependents forEach: [:view|
+  _dependents forEach: [:view|
     view onRemove:obj
   ]
+!.
+
+!SbCollection dependents
+  _dependents
 !.
 
 
