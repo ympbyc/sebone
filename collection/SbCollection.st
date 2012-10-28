@@ -100,7 +100,9 @@
 !.
 
 !SbCollection forEachDependent: blk
-  _dependents forEach: blk
+  _dependents forEach: [:v|
+    [blk value: v] tryCatch:[] "custom events are not always captured"
+  ]
 !.
 
 
