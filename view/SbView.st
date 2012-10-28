@@ -1,6 +1,6 @@
 "A view is an UI wrapper"
 
-+Object subclass:#SbView variables:#(#_model #uiConstructor #elem).
++Object subclass:#SbView variables:#(#_model #_collection #uiConstructor #elem).
 
 "Views receive events from collections and models and update the UI with current state of the model.
  Views are also responsible for receiving UI events like clicks and call suitable methods of the model.

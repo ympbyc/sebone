@@ -6,8 +6,9 @@
  add them to the collection one by one."
 
 !SbCollection init
-  models := #().
-  dependents := #()
+  models     :=  #().
+  dependents :=  #().
+  modelConst :=  [].
 !.
 
 !SbCollection getModels
@@ -84,10 +85,17 @@
   dependents push: view
 !.
 
-!SbCollection trigger: ev with: obj
-  "Call onEvent:with: with the event's name and self"
+!SbCollection added: obj
+  "Call onAdd: with obj"
   dependents forEach: [:view|
-    view onEvent: ev with: obj
+    view onAdd:obj
+  ]
+!.
+
+!SbCollection removed:obj
+  "Call onRemove: with obj"
+  dependents forEach: [:view|
+    view onRemove:obj
   ]
 !.
 

@@ -9,7 +9,7 @@
   attributes := #{}.
   changedProp := #().
   dependents := #().
-  _cid := Date new. "An instance-unique id"
+  _cid := Date new getTime. "An instance-unique id"
 !.
 
 !SbModel get: prop
