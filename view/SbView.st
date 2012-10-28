@@ -54,8 +54,12 @@
   "Override to listen for model updates"
 !.
 
-!SbView onEvent: ev with: obj
-  "Override to listen for collection updates"
+!SbView onAdd:mdl
+  "Override to listen for collection addition"
+!.
+
+!SbView onRemove:mdl
+  "Override to listen for collection's remove event"
 !.
 
 module at:#exports put:SbView.
