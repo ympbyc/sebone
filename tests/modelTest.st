@@ -5,7 +5,7 @@ test := [:blk :name|
   ifTrue:[console log:'\u001b[32m'+'passed:'+name]
 ].
 
-SbModel := require value:'../model/SbModel'.
+SbModel := require value:'../bin/SbModel'.
 
 +SbModel subclass:#TestModel variables:#().
 

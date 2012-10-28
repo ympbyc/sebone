@@ -15,6 +15,10 @@
   _model addDependent: self
 !.
 
+!SbView model
+  _model
+!.
+
 !SbView setUIConstructor: uiConst
   "A function to create an instance of some UI should be passed.
    The instance is stored to the view's el field"
@@ -43,10 +47,6 @@
 
 !SbView hide
   self el hide
-!.
-
-!SbView model
-  _model
 !.
 
 !SbView on:ev invoke: blk
