@@ -78,9 +78,6 @@
   _dependents push: view
 !.
 
-!SbModel dependents
-  _dependents
-!.
 
 module at:#exports put:SbModel.
 

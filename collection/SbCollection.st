@@ -99,8 +99,8 @@
   ]
 !.
 
-!SbCollection dependents
-  _dependents
+!SbCollection forEachDependent: blk
+  _dependents forEach: blk
 !.
 
 
