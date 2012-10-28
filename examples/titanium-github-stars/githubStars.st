@@ -67,10 +67,8 @@ UI           := Ti at:#UI.
   win add: sgContainer.
   win add: searchBtn.
 !.
-!AppView onEvent:ev with:obj
-  ev === #add ifTrue:[
-    StarGazerView new ;setModel:obj ;render ;addTo:sgContainer
-  ].
+!AppView onAdd:obj
+  StarGazerView new ;setModel:obj ;render ;addTo:sgContainer
 !.
 !AppView search
   sgColl fetch
