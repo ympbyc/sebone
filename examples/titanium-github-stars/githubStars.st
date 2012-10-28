@@ -5,9 +5,9 @@
  structure the project so the require path is correct.
 "
 | SbModel SbCollection SbView UI |
-SbModel      := require value: 'model/SbModel'.
-SbCollection := require value: 'collection/SbCollection'.
-SbView       := require value: 'view/SbView'.
+SbModel      := require value: 'lib/SbModel'.
+SbCollection := require value: 'lib/SbCollection'.
+SbView       := require value: 'lib/SbView'.
 UI           := Ti at:#UI.
 
 +SbModel subclass:#StarGazerModel variables:#().
