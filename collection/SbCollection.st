@@ -38,7 +38,7 @@
 !SbCollection add: m
   "Add a model to the collection, fire 'add' event"
   models push: m.
-  self trigger: #add with: m
+  self added: m
 !.
 
 !SbCollection remove: m
@@ -48,7 +48,7 @@
       <delete models[key]>
     ]
   ].
-  self trigger: #remove with: m
+  self removed: m
 !.
 
 !SbCollection getByCid: cid
@@ -66,13 +66,13 @@
 !SbCollection push: m
   "Push a model at the end of the collection"
   models push: m.
-  self trigger: #add with: m
+  self added: m
 !.
 
 !SbCollection pop |m|
   "Pop the model at the end of the collection"
   m := models pop
-  self trigger: #remove with: m
+  self removed: m
 !.
 
 !SbCollection size
