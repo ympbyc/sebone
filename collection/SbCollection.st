@@ -3,20 +3,23 @@
 "
 
 "A Collections is an object that wraps an array of models of a type"
-+Object subclass:#SbCollection variables:#(#models #_dependents #modelConst).
++Object subclass:#SbCollection variables:#(#_models #_dependents #modelConst).
 
 "You fetch a set of data(e.g. /users), create a model for each item in the set, 
  add them to the collection one by one."
 
 !SbCollection init
-  models     :=  #().
+  _models     :=  #().
   _dependents :=  #().
   modelConst :=  [].
 !.
 
-!SbCollection getModels
-  "Return the raw array of modles"
-  models
+!SbCollection models | ms |
+  "Return the raw array of modles, without undefineds in it"
+  ms := #().
+  _models forEach:[:it|
+    it !== undefined ifTrue:[ms push:it]].
+  ms
 !.
 
 !SbCollection setModelConstructor: m
@@ -30,17 +33,17 @@
 !.
 
 !SbCollection toJSON
-  models
+  self models
 !.
 
 !SbCollection reset
   "Empty the collection"
-  models := #()
+  _models := #()
 !.
 
 !SbCollection add: m
   "Add a model to the collection, fire 'add' event"
-  models push: m.
+  _models push: m.
   self added: m
 !.
 
@@ -48,7 +51,7 @@
   "Remove a model from the collection, fire 'remove' event"
   self each:[:_m :key|
     m === _m ifTrue: [
-      <delete models[key]>
+      _models at:key put:undefined
     ]
   ].
   self removed: m
@@ -63,24 +66,24 @@
 
 !SbCollection index: i
   "Get a model in the collection at the specified index"
-  models at: i
+  self models at: i
 !.
 
 !SbCollection push: m
   "Push a model at the end of the collection"
-  models push: m.
+  _models push: m.
   self added: m
 !.
 
 !SbCollection pop |m|
   "Pop the model at the end of the collection"
-  m := models pop
+  m := _models pop.
   self removed: m
 !.
 
-!SbCollection size
+!SbCollection size | length |
   "The size of the collection"
-  models at:#length
+  (self models) at:#length
 !.
 
 !SbCollection addDependent: view
@@ -112,11 +115,11 @@
 "---Collections have useful methods to iterate over the collection---"
 
 !SbCollection each: blk
-  models forEach: blk
+  self models forEach: blk
 !.
 
 !SbCollection map: blk
-  models map: blk
+  self models map: blk
 !.
 
 !SbCollection inject: initial into: blk |last|

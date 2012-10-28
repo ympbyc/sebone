@@ -3,30 +3,29 @@
 "
 
 "A model is a hash"
-+Object subclass:#SbModel variables: #(#attributes #changedProp #_dependents #_cid).
++Object subclass:#SbModel variables: #(#_attributes #_dependents #_cid).
 
 "A model is an wrapped hash. It has data storage capability. It has methods to manipulate these data.
  A very small object like one tweet can be a model."
 
 !SbModel init
-  attributes := #{}.
-  changedProp := #().
+  _attributes := #{}.
   _dependents := #().
   _cid := Date new getTime. "An instance-unique id"
 !.
 
 !SbModel get: prop
-  attributes at:prop
+  _attributes at:prop
 !.
 
 !SbModel set: prop to: val
-  attributes at:prop put:val.
-  changedProp push: prop
+  _attributes at:prop put:val.
+  self changed:prop.
 !.
 
 !SbModel toJSON
   "JSON.stringify calls this function and stringify the return value"
-  attributes
+  _attributes
 !.
 
 !SbModel fetch
@@ -45,23 +44,19 @@
 
 !SbModel _setAttributes: hash
   "Do not use this method when possible"
-  attributes := hash
+  _attributes := hash
 !.
 
-!SbModel _attributes
-  attributes
+!SbModel attributes
+  _attributes
 !.
 
-!SbModel clone
-  (self at:#constructor) new ; _setAttributes: attributes
-!.
-
-!SbModel change
-  "Manually fire the change event"
-  changedProp forEach:[:prop :key|
-    self changed: prop
-  ].
-  changedProp := #{}
+!SbModel clone |ret me key|
+  ret := #{}.
+  me := self.
+  <for (key in me)
+    ret[key] = me[key]>.
+  ret
 !.
 
 !SbModel cid
