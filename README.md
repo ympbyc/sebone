@@ -1,20 +1,20 @@
-        ___      _                       _   
-       / __| ___| |__  ___ _ _  ___   __| |_ 
-       \__ \/ -_) '_ \/ _ \ ' \/ -_)_(_-<  _|
-       |___/\___|_.__/\___/_||_\___(_)__/\__|
-Backbone-like MVC structure to your LittleSmallscript.
+          ___      _                       _   
+         / __| ___| |__  ___ _ _  ___   __| |_ 
+         \__ \/ -_) '_ \/ _ \ ' \/ -_)_(_-<  _|
+         |___/\___|_.__/\___/_||_\___(_)__/\__|
+  Backbone-like MVC structure to your LittleSmallscript.
 
 
-Sebone is a tiny subset of Backbone.js the client side MVC toolset.
+Sebone is a tiny subset of Backbone.js the client side MVC toolset.  
 Sebone provides just a small number of carefully chosen APIs; just enough to suggest your sense to structure your app in MVC pattern. Sebone will never attempt to provide a full-stack framework that constrain your thinking.
 
 Sebone is not dependent on a specific environment. You can use it in browser, Titanium Mobile, Node.js app, ... whereever JavaScript runs.
 
-Sebone is written in <a href="https://github.com/ympbyc/LittleSmallscript">LittleSmallscript</a> and its methods have names that follows Smalltalk's convention of method names. To get the most of it, we strongly recommend you to use Sebone with LittleSmallscript.
+Sebone is written in <a href="https://github.com/ympbyc/LittleSmallscript">LittleSmallscript</a> and its methods have names that follows Smalltalk's convention. To get the most of it, we strongly recommend you to use Sebone with LittleSmallscript.
 
 Installation
 ------------
-The bin/ directory contains the stable compiled version of Sebone. Copy it to your file system and `require'.
+The bin/ directory contains the stable compiled version of Sebone. Copy it to your file system and `require`.
 
 ```smalltalk
 | Sebone |
@@ -23,7 +23,7 @@ Sebone := require value:'sebone'.
 
 Manual
 ======
-`Sebone' is a namespace that contain three important classes: Sebone.Model, Sebone.Collection, and Sebone.View. You will be subclassing these classes to create your own classes.
+`Sebone` is a namespace that contain three important classes: Sebone.Model, Sebone.Collection, and Sebone.View. You will be subclassing these classes to create your own classes.
 
 Models
 ------
@@ -38,8 +38,8 @@ yourModel := HackerModel new.
 ```
 
 ### set:to:/get:
-You set a data to the model with `set:to:'.
-You get a data from the model with `get:'.
+You set a data to the model with `set:to:`.  
+You get a data from the model with `get:`.
 
 ```smalltalk
 yourModel set:#name to:#Ninja.
@@ -47,7 +47,7 @@ yourModel get:#name
 ```
 
 ### Dependents
-Sebone uses `dependent pattern' - a variation of observer patterns. Each model have a private slot that holds a set of `dependent' objects (They are views most of the time). Whenever a change happen to the data the model is handling, the model sends `update:to' message to each dependent; letting the dependents to sync with the model.
+Sebone uses `dependent pattern` - a variation of observer patterns. Each model have a private slot that holds a set of `dependent` objects (They are views most of the time). Whenever a change happen to the data the model is handling, the model sends `update:to` message to each dependent; letting the dependents to sync with the model.
 
 To add a dependent to (i.e. subscribe to) a model, send addDependent: message to the model.
 
@@ -56,7 +56,7 @@ yourModel addDependent:hackerView. "We'll talk about hackerView later"
 ```
 
 ### Fetching and saving
-Models have ability to `fetch' and `save'. 
+Models have ability to `fetch` and `save`. 
 
 ```smalltalk
 !HackerModel fetch
@@ -71,7 +71,7 @@ Models have ability to `fetch' and `save'.
 
 Collections
 -----------
-If a model wraps a dictionary, a collection wrapps an array. Collections are arrays of models.
+If a model wraps a dictionary, a collection wrapps an array. Collections are arrays of models.  
 Register the models' constructor on initialize if you like.
 
 ```smalltalk
@@ -87,7 +87,7 @@ anonymous := HackerGuild new.
 ```
 
 ### add:/remove:
-To add a model to a collection, send `add:' message.
+To add a model to a collection, send `add:` message.
 
 ```smalltalk
 "Let's create some more hacers"
@@ -100,7 +100,7 @@ anonymous add:gundam.
 anonymous add:azumanga.
 ```
 
-To remove a model from a collection, send `remove:' message.
+To remove a model from a collection, send `remove:` message.
 
 ```smalltalk
 anonymous remove:yourModel
@@ -121,7 +121,7 @@ Collections can have dependents, too.
 anonymous addDependent:appView. "We wll talk about appView later"
 ```
 
-Collections send `onAdd:' and `onRemove:' instead of `update:to:'.
+Collections send `onAdd:` and `onRemove:` instead of `update:to:`.  
 You can also set up the collection to send custom messages.
 
 ```smalltalk
@@ -131,8 +131,8 @@ You can also set up the collection to send custom messages.
 ```
 
 ### Fetchng and saving
-Collections also can fetch and save.
-When creating a new model to add to the collection itself, it is useful to use `create:' that is available if you registered the modelConstructor.
+Collections also can fetch and save.  
+When creating a new model to add to the collection itself, it is useful to use `create:` that is available if you registered the modelConstructor.
 
 ```smalltalk
 !HackerGuild fetch
@@ -174,7 +174,7 @@ View := Sebone at:#View.
 hackerView := HackerView new.
 ```
 
-Each view has a reference to a model which the model depends on. Set this relationship with `setModel:'.
+Each view has a reference to a model which the model depends on. Set this relationship with `setModel:`.
 
 ```smalltalk
 hackerView setModel:yourModel
@@ -182,9 +182,9 @@ hackerView setModel:yourModel
 
 ### render
 
-Each view implements `render' message to update the UI with new infomation.
-`el' message pulls out the instance of the UIConstructor that you set on initialize.
-`model' pulls out the model you set with `setModel'.
+Each view implements `render` message to update the UI with new infomation.  
+`el` message pulls out the instance of the UIConstructor that you set on initialize.  
+`model` pulls out the model you set with `setModel`.
 
 ```smalltalk
 !HackerView render
