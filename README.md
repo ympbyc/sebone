@@ -1,14 +1,15 @@
-          ___      _                       _   
-         / __| ___| |__  ___ _ _  ___   __| |_ 
-         \__ \/ -_) '_ \/ _ \ ' \/ -_)_(_-<  _|
-         |___/\___|_.__/\___/_||_\___(_)__/\__|
-  Backbone-like MVC structure to your LittleSmallscript.
-
+```
+         ___      _                       _ 
+        / __| ___| |__  ___ _ _  ___   __| |_ 
+        \__ \/ -_) '_ \/ _ \ ' \/ -_)_(_-<  _|
+        |___/\___|_.__/\___/_||_\___(_)__/\__|
+Backbone-like MVC structure to your LittleSmallscript.
+```
 
 Sebone is a tiny subset of Backbone.js the client side MVC toolset.  
 Sebone provides just a small number of carefully chosen APIs; just enough to suggest your sense to structure your app in MVC pattern. Sebone will never attempt to provide a full-stack framework that constrain your thinking.
 
-Sebone is not dependent on a specific environment. You can use it in browser, Titanium Mobile, Node.js app, ... whereever JavaScript runs.
+Sebone is not dependent on a specific environment. You can use it in browsers, Titanium Mobile, Node.js app, ... whereever JavaScript runs.
 
 Sebone is written in <a href="https://github.com/ympbyc/LittleSmallscript">LittleSmallscript</a> and its methods have names that follows Smalltalk's convention. To get the most of it, we strongly recommend you to use Sebone with LittleSmallscript.
 
@@ -49,7 +50,7 @@ yourModel get:#name
 ### Dependents
 Sebone uses `dependent pattern` - a variation of observer patterns. Each model have a private slot that holds a set of `dependent` objects (They are views most of the time). Whenever a change happen to the data the model is handling, the model sends `update:to` message to each dependent; letting the dependents to sync with the model.
 
-To add a dependent to (i.e. subscribe to) a model, send addDependent: message to the model.
+To add a dependent to (i.e. subscribe to) a model, send `addDependent:` message to the model.
 
 ```smalltalk
 yourModel addDependent:hackerView. "We'll talk about hackerView later"
@@ -90,7 +91,7 @@ anonymous := HackerGuild new.
 To add a model to a collection, send `add:` message.
 
 ```smalltalk
-"Let's create some more hacers"
+"Let's create some more hackers"
 gundam   := HackerModel new ;set:#name to:#GUNDAM.
 azumanga := HackerModel new ;set:#name to:#Azumanga.
 
@@ -110,12 +111,12 @@ anonymous remove:yourModel
 Collections have some useful iteration methods defined.
 
 ```smalltalk
-anonymous each:[:hacker| console log:(hacker at:#name)].
+anonymous each:[:hacker| console log:(hacker get:#name)].
 anonymous inject:0 into:[:hacker :last| last + 1].
 ```
 
 ### Dependents
-Collections can have dependents, too. 
+Collections also can have dependents. 
 
 ```smalltalk
 anonymous addDependent:appView. "We wll talk about appView later"
@@ -197,7 +198,7 @@ Each view implements `render` message to update the UI with new infomation.
 ```
 
 
-Now, let's create AppView and listen on the anonimous's collection for messages.
+Now, let's create AppView and listen on the anonymous's collection for messages.
 
 ```smalltalk
 | appView |
@@ -207,7 +208,7 @@ Now, let's create AppView and listen on the anonimous's collection for messages.
   self setUIConstructor:[$ value:'<ul></ul>'].
 !.
 !AppView onAdd: aHackerModel | hv |
-  "invoked when anonimous sends onAdd message"
+  "invoked when anonymous sends onAdd message"
   hv := HackerView new.
   hv setModel:aHackerModel.
   hv render.
