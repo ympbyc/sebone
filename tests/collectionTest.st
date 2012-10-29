@@ -5,7 +5,7 @@ test := [:blk :name|
   ifTrue:[console log:'\u001b[32m'+'passed:'+name]
 ].
 
-SbCollection := require value:'../bin/SbCollection'.
+SbCollection := require value:'../src/SbCollection'.
 
 +SbCollection subclass:#TestCollection variables:#().
 

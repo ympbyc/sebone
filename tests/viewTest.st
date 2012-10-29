@@ -5,7 +5,7 @@ test := [:blk :name|
   ifTrue:[console log:'\u001b[32m'+'passed:'+name]
 ].
 
-SbView := require value:'../bin/SbView'.
+SbView := require value:'../src/SbView'.
 
 +SbView subclass:#TestView variables:#().
 
