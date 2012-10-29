@@ -48,7 +48,7 @@ yourModel get:#name
 ```
 
 ### Dependents
-Sebone uses `dependent pattern` - a variation of observer patterns. Each model have a private slot that holds a set of `dependent` objects (They are views most of the time). Whenever a change happen to the data the model is handling, the model sends `update:to` message to each dependent; letting the dependents to sync with the model.
+Sebone uses `dependent pattern` - a variation of observer patterns. Each model have a private slot that holds a set of `dependent` objects (They are views most of the time). Whenever a change happen to the data the model is handling, the model sends `update:to:` message to each dependent; letting the dependents to sync with the model.
 
 To add a dependent to (i.e. subscribe to) a model, send `addDependent:` message to the model.
 
@@ -159,7 +159,7 @@ When creating a new model to add to the collection itself, it is useful to use `
 
 Views
 -----
-Views are the listeners of Collections amd Models. Whenever a change happens to them, the Views get notified and update themselves to reflect the change to UI.
+Views are the listeners of Collections and Models. Whenever a change happens to them, the Views get notified and update themselves to reflect the change to UI.
 
 ### init
 
@@ -175,7 +175,7 @@ View := Sebone at:#View.
 hackerView := HackerView new.
 ```
 
-Each view has a reference to a model which the model depends on. Set this relationship with `setModel:`.
+Each view has a reference to a model that it depends on. Set this relationship with `setModel:`.
 
 ```smalltalk
 hackerView setModel:yourModel
@@ -215,7 +215,7 @@ Now, let's create AppView and listen on the anonymous's collection for messages.
   hv := HackerView new.
   hv setModel:aHackerModel.
   hv render.
-  ($ value: hv el) appendTo: self el "create a hackerView, set data to it and add to myself"
+  hv el appendTo: self el "create a hackerView, set data to it and add to myself"
 !.
 ```
 
@@ -224,7 +224,7 @@ The main script would be like this.
 ```smalltalk
 appView := AppView new.
 anonymous fetch.
-($ value: appView el) appendTo:#body
+appView el appendTo:#body
 ```
 
 
