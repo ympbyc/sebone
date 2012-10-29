@@ -197,6 +197,9 @@ Each view implements `render` message to update the UI with new infomation.
 !.
 ```
 
+AppView
+-------
+An app starts in AppView, listening for whatever an event to kick things in.
 
 Now, let's create AppView and listen on the anonymous's collection for messages.
 
@@ -215,3 +218,28 @@ Now, let's create AppView and listen on the anonymous's collection for messages.
   ($ value: hv el) appendTo: self el "create a hackerView, set data to it and add to myself"
 !.
 ```
+
+The main script would be like this.
+
+```smalltalk
+appView := AppView new.
+anonymous fetch.
+($ value: appView el) appendTo:#body
+```
+
+
+Using Sebone in environments other than browsers
+================================================
+Easy! Just replace the UI constructor block you give to `setUIConstructor` with what suits the environment. So if you are using Titanium Mobile:
+
+```smalltalk
+!HackerView init
+  self setUIConstructor:[(Ti at:#UI) createTableViewRow]
+!.
+
+!AppView init
+  self setUIConstructor:[(Ti at:#UI) createTableView]
+!.
+```
+
+would do the job.
