@@ -14,12 +14,9 @@
   modelConst :=  [].
 !.
 
-!SbCollection models | ms |
-  "Return the raw array of modles, without undefineds in it"
-  ms := #().
-  _models forEach:[:it|
-    it !== undefined ifTrue:[ms push:it]].
-  ms
+!SbCollection models
+  "Return the raw array of modles"
+  _models
 !.
 
 !SbCollection setModelConstructor: m
@@ -54,6 +51,9 @@
       _models at:key put:undefined
     ]
   ].
+  _models := self reject:[:m|
+    m === undefined
+  ].
   self removed: m
 !.
 
@@ -67,18 +67,6 @@
 !SbCollection index: i
   "Get a model in the collection at the specified index"
   self models at: i
-!.
-
-!SbCollection push: m
-  "Push a model at the end of the collection"
-  _models push: m.
-  self added: m
-!.
-
-!SbCollection pop |m|
-  "Pop the model at the end of the collection"
-  m := _models pop.
-  self removed: m
 !.
 
 !SbCollection size | length |
@@ -120,6 +108,18 @@
 
 !SbCollection map: blk
   self models map: blk
+!.
+
+!SbCollection filter:blk | arr |
+  arr := #().
+  self each:[:m|
+    (blk value:m) ifTrue:[arr push:m]].
+  arr
+!.
+
+!SbCollection reject:blk
+  self filter:[:m|
+    <! blk(m)>]
 !.
 
 !SbCollection inject: initial into: blk |last|

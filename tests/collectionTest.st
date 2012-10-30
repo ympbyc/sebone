@@ -58,12 +58,6 @@ testCollection addDependent:#{
   #onRemove:[:m| stdout := 'model lost '+m]
   #onSomeEvent:[stdout := 'someEvent happened']
 }.
-testCollection push:999.
-test value:[stdout === 'model got 999']
-     value:'push - added - onAdd'.
-testCollection pop === 999.
-test value:[stdout === 'model lost 999']
-     value:'pop - removed - onRemove'.
 
 test value:[testCollection size === 5]
      value:#size.
